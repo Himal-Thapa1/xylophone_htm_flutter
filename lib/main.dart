@@ -11,83 +11,37 @@ class XylophoneApp extends StatefulWidget {
 }
 
 class _XylophoneAppState extends State<XylophoneApp> {
+  Expanded buildKey({Color color, int notenumber}) {
+    return Expanded(
+      child: ElevatedButton(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(color),
+        ),
+        onPressed: () {
+          final player = AudioCache();
+          player.play('note$notenumber.wav');
+        },
+        child: Text(''),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        backgroundColor: Colors.black,
         body: SafeArea(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.red),
-                ),
-                onPressed: () {
-                  final player = AudioCache();
-                  player.play('note1.wav');
-                },
-                child: Text('1'),
-              ),
-              ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.orange),
-                ),
-                onPressed: () {
-                  final player = AudioCache();
-                  player.play('note2.wav');
-                },
-                child: Text('2'),
-              ),
-              ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.yellow),
-                ),
-                onPressed: () {
-                  final player = AudioCache();
-                  player.play('note3.wav');
-                },
-                child: Text('3'),
-              ),
-              ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.green),
-                ),
-                onPressed: () {
-                  final player = AudioCache();
-                  player.play('note4.wav');
-                },
-                child: Text('4'),
-              ),
-              ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.blue),
-                ),
-                onPressed: () {
-                  final player = AudioCache();
-                  player.play('note5.wav');
-                },
-                child: Text('5'),
-              ),
-              ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.purple),
-                ),
-                onPressed: () {
-                  final player = AudioCache();
-                  player.play('note6.wav');
-                },
-                child: Text('6'),
-              ),
-              ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.teal),
-                ),
-                onPressed: () {
-                  final player = AudioCache();
-                  player.play('note7.wav');
-                },
-                child: Text('7'),
-              ),
+              buildKey(color: Colors.red, notenumber: 1),
+              buildKey(color: Colors.orange, notenumber: 2),
+              buildKey(color: Colors.yellow, notenumber: 3),
+              buildKey(color: Colors.teal, notenumber: 4),
+              buildKey(color: Colors.green, notenumber: 5),
+              buildKey(color: Colors.purple, notenumber: 6),
+              buildKey(color: Colors.blue, notenumber: 7),
             ],
           ),
         ),
