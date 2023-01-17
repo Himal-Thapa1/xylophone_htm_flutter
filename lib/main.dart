@@ -1,11 +1,20 @@
+import 'package:audioplayers/audio_cache.dart';
 import 'package:flutter/material.dart';
-import 'package:audioplayers/audioplayers.dart';
+
 
 
 void main() => runApp(XylophoneApp());
 
-class XylophoneApp extends StatelessWidget {
+class XylophoneApp extends StatefulWidget {
+  const XylophoneApp({Key key}) : super(key: key);
+
   @override
+  State<XylophoneApp> createState() => _XylophoneAppState();
+}
+
+class _XylophoneAppState extends State<XylophoneApp> {
+
+    @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
@@ -13,9 +22,8 @@ class XylophoneApp extends StatelessWidget {
           child: Center(
             child: TextButton(
               onPressed: () {
-                final player = AudioPlayer();
-                // player.play('note1.wav', isLocal: true);
-                player.setSource(AssetSource('sounds/coin.wav'));
+                final player= AudioCache();
+                player.play('note1.wav');
               },
               child: Text(
                 'Click me!!!',
@@ -26,4 +34,5 @@ class XylophoneApp extends StatelessWidget {
       ),
     );
   }
-}
+  }
+
